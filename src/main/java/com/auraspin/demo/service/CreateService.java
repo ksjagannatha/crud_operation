@@ -14,8 +14,8 @@ public interface CreateService {
 
 	Optional<CreateEntity> findById(String id);
 
-	CreateEntity updateBy(String id,  Map<String,String>  requestBody);
+	CreateEntity updateBy(String id, Map<String, String> requestBody);
 
-	Map<String,String> deleteById(String id);
+	Map<String, String> deleteById(String id);
 
 }

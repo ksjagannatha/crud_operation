@@ -1,6 +1,5 @@
 package com.auraspin.demo.serviceimpl;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +14,12 @@ import com.auraspin.demo.entity.CreateEntity;
 import com.auraspin.demo.repository.UserRepository;
 import com.auraspin.demo.service.CreateService;
 
-
 @Service
 @Transactional
 public class CreateServiceImpl implements CreateService {
-	
-	@Autowired  UserRepository userRepository;
+
+	@Autowired
+	UserRepository userRepository;
 
 	@Override
 	public CreateEntity createData(CreateEntity requestBody) {
@@ -34,28 +33,28 @@ public class CreateServiceImpl implements CreateService {
 
 	@Override
 	public Optional<CreateEntity> findById(String id) {
-		Long idBy=Long.parseLong(id);
-		
+		Long idBy = Long.parseLong(id);
+
 		return userRepository.findById(idBy);
 	}
 
 	@Override
-	public CreateEntity updateBy(String id, Map<String,String> requestBody) {
-		Long idBy=Long.parseLong(id);
-		CreateEntity data=userRepository.findById(idBy).get();
-		if(requestBody.containsKey("password")) {
+	public CreateEntity updateBy(String id, Map<String, String> requestBody) {
+		Long idBy = Long.parseLong(id);
+		CreateEntity data = userRepository.findById(idBy).get();
+		if (requestBody.containsKey("password")) {
 			data.setPassword(requestBody.get("password"));
 		}
-		if(requestBody.containsKey("username")) {
+		if (requestBody.containsKey("username")) {
 			data.setUsername(requestBody.get("username"));
 		}
 		return userRepository.save(data);
 	}
 
 	@Override
-	public Map<String,String> deleteById(String id) {
-		Map<String, String> map=new HashMap<>();
-		Long idBy=Long.parseLong(id);
+	public Map<String, String> deleteById(String id) {
+		Map<String, String> map = new HashMap<>();
+		Long idBy = Long.parseLong(id);
 		userRepository.deleteById(idBy);
 		map.put("status", "Deleted Success");
 		return map;
